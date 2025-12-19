@@ -2,14 +2,20 @@ function RestroCard(props) {
   // console.log(props);
   // object de-structure
   const {data} = props;
-  const {name,price,rating,cuisines,image} = data;
+//   console.log(data);
+  const {info} = data;
+  console.log(info);
+  
+  const {avgRating,name,cuisines,costForTwo} = info;
+
+  
+//   const {name,price,rating,cuisines,image,deliveryTime} = data;
   
      return(
       <div>
-          <img src={image} alt="" />
           <h1>{name}</h1>
-          <p>{price}</p>
-          <p>{rating}</p>
+          <p>{costForTwo}</p>
+          <p>{avgRating}</p>
           <p>{cuisines.join(", ")}</p>
       </div>
      )

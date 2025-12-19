@@ -1,13 +1,34 @@
-import  {restroData}  from "../store/data"
+// import  {restroData}  from "../store/data"
 import RestroCard from "./RestroCard"
-import { useState } from "react"
+import { useState ,useEffect } from "react"
+
 
 
 function Body(){
-  const [data,setData] = useState(restroData);
+  const [data,setData] = useState([]);
 //   const data = restroData
 
- const time = 25
+  useEffect(()=>{
+    fetchData();
+  
+  },[])
+ 
+
+   const fetchData = async ()=> {
+      try { 
+        const res= await fetch("http://localhost:3000/0")
+        const json = await res.json()
+        console.log(json.data.cards[1]?.card?.card.gridElements?.infoWithStyle?.restaurants);
+          const finalData = json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        setData(finalData);
+        
+      } catch (error) {
+         console.log(error,"error in fetchig swiggy api");
+      }
+   }
+
+ const time = 25;
+
   
   
     return(
@@ -28,7 +49,7 @@ function Body(){
         >Fatest delivery</button>
         {/* <RestroCard name={"dominos"} price={200} ratings={4.5} cuisines={["indian","italian"]} /> */}
         {
-          data.map(res => <RestroCard key={res.id} data ={res} />)
+          data.map(res => <RestroCard key={res.info.id} data ={res} />)
         }
         
          </>
