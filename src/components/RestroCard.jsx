@@ -1,24 +1,26 @@
+import { CDN_URL } from "../utils/constants";
+
+
 function RestroCard(props) {
-  // console.log(props);
-  // object de-structure
   const {data} = props;
-//   console.log(data);
-  const {info} = data;
-  console.log(info);
-  
-  const {avgRating,name,cuisines,costForTwo} = info;
+  const {info} = data ;
+  const {avgRating, name, cuisines, costForTwo, cloudinaryImageId} = info
 
+  const image = CDN_URL+cloudinaryImageId
+  console.log(image);
   
-//   const {name,price,rating,cuisines,image,deliveryTime} = data;
-  
-     return(
-      <div>
-          <h1>{name}</h1>
-          <p>{costForTwo}</p>
-          <p>{avgRating}</p>
-          <p>{cuisines.join(", ")}</p>
+
+  return(
+    <article className="restro-card">
+      <img className="restro-image" src={image} alt={name} />
+      <h3>{name}</h3>
+      <div className="meta">
+        <div className="rating">{avgRating}</div>
+        <div className="cost">{costForTwo}</div>
       </div>
-     )
- }
+      <p className="cuisines">{Array.isArray(cuisines) ? cuisines.join(", ") : cuisines}</p>
+    </article>
+  )
+}
 
- export default RestroCard;
+export default RestroCard;
