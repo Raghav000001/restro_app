@@ -4,6 +4,8 @@ import { CDN_URL } from "../utils/constants";
 function RestroCard(props) {
   const {data} = props;
   const {info} = data ;
+  const {sla} = info;
+
   const {avgRating, name, cuisines, costForTwo, cloudinaryImageId} = info
 
   const image = CDN_URL+cloudinaryImageId
