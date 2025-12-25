@@ -24,7 +24,7 @@ function Body(){
         console.log(json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
           const finalData = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setData(finalData);
-        setFilteredData(finalData)
+        setFilteredData(finalData);
       } catch (error) {
          console.log(error,"error in fetchig swiggy api");
       }
@@ -45,7 +45,7 @@ function Body(){
           <button className="btn"
             onClick={()=> {
               const topRated = data.filter(r=> r.info?.avgRating > 4.5)
-              setData(topRated)
+              setFilteredData(topRated)
             }}
           >Top Rated Restros</button>
          <button
