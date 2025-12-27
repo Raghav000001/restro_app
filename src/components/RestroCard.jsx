@@ -9,7 +9,7 @@ function RestroCard(props) {
   const {avgRating, name, cuisines, costForTwo, cloudinaryImageId} = info
 
   const image = CDN_URL+cloudinaryImageId
-  console.log(image);
+  // console.log(image);
   
 
   return(
