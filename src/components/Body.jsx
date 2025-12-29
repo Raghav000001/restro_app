@@ -23,10 +23,10 @@ function Body(){
         const res= await fetch("http://localhost:3000/0")
         const json = await res.json()
         // console.log(json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-          const finalData = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const finalData = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setData(finalData);
         setFilteredData(finalData);
-      } catch (error) {
+      } catch (error) { 
          console.log(error,"error in fetchig swiggy api");
       }
    }
