@@ -32,7 +32,7 @@ function Body(){
    }
 
 
- const time = 30;
+ const time = 20;
 
   if (data.length===0) {
     return <Shimmer/>
@@ -52,8 +52,8 @@ function Body(){
          <button
         className="btn"
          onClick={()=> {
-             const fastest = data.filter(r=>r.deliveryTime<time.toString())
-              setData(fastest)
+             const fastest = data.filter(r=>r.info.sla.deliveryTime<time.toString())
+              setFilteredData(fastest)
               console.log(fastest);
               
          }}

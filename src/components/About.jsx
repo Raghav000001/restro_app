@@ -1,27 +1,11 @@
-import React, { Component } from 'react'
-import User from './User'
+import React from 'react'
 
-
-    class About extends Component { 
- 
-       constructor() {
-        super()
-
-       }
-
-     componentDidMount(){
-      console.log("componentDidMount of about page is called ");
-     } 
-
-  render() {
-    console.log("render of about is called");
-    return (
-      <div>
-         <User name={"raghav"} age={21} />
-      </div>
-    )
-  }
+const About = () => {
+  return (
+    <div>
+      about component
+    </div>
+  )
 }
 
-
-export default About;
+export default About
