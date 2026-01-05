@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../hooks/useOnlineStatus";
 import Offline from "./Offline";
+import { CardWithLabel } from "./RestroCard";
 
 function Body() {
   const [data, setData] = useState([]);
@@ -18,7 +19,9 @@ function Body() {
     try {
       const res = await fetch("http://localhost:3000/0");
       const json = await res.json();
-      const finalData = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      const finalData =
+        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
       setData(finalData || []);
       setFilteredData(finalData || []);
     } catch (error) {
@@ -26,6 +29,7 @@ function Body() {
     }
   };
 
+  const RestroWithLabel = CardWithLabel(RestroCard);
   const onlineStatus = useOnlineStatus();
   const time = 20;
 
@@ -53,7 +57,9 @@ function Body() {
         <button
           className="px-4 py-2 bg-white border rounded-lg shadow-sm text-sm font-semibold hover:shadow transition"
           onClick={() => {
-            const fastest = data.filter((r) => r.info.sla.deliveryTime < time.toString());
+            const fastest = data.filter(
+              (r) => r.info.sla.deliveryTime < time.toString()
+            );
             setFilteredData(fastest);
           }}
         >
@@ -61,7 +67,7 @@ function Body() {
         </button>
 
         <input
-          className="px-3 py-2 border rounded-lg text-sm flex-1 min-w-[200px]"
+          className="px-3 py-2 border rounded-lg text-sm flex-1 min-w-50"
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -70,7 +76,9 @@ function Body() {
 
         <button
           onClick={() => {
-            const filtered = data.filter((restro) => restro.info.name.toLowerCase().includes(search.toLowerCase()));
+            const filtered = data.filter((restro) =>
+              restro.info.name.toLowerCase().includes(search.toLowerCase())
+            );
             setFilteredData(filtered);
           }}
           className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-semibold"
@@ -81,8 +89,17 @@ function Body() {
 
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredData?.map((res) => (
-          <Link to={`/menu/${res.info?.id}`} key={res.info?.id} className="block">
-            <RestroCard data={res} />
+          <Link
+            to={`/menu/${res.info?.id}`}
+            key={res.info?.id}
+            className="block"
+          >
+            {/* logic = res.info.isOpen */}
+            {res.info.isOpen ? (
+              <RestroWithLabel data={res} />
+            ) : (
+              <RestroCard data={res} />
+            )}
           </Link>
         ))}
       </section>

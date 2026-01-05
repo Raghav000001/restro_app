@@ -18,6 +18,19 @@ function RestroCard(props) {
       <p className="text-sm text-gray-500 mt-2">{Array.isArray(cuisines) ? cuisines.join(", ") : cuisines}</p>
     </article>
   );
+
 }
+
+
+  export const CardWithLabel = (RestroCard)=> {
+      return (props)=> {
+        return(
+           <div>
+              <label className="absolute bg-black">isopen</label>
+              <RestroCard {...props} />
+           </div>
+        )
+      }
+  }
 
 export default RestroCard;
