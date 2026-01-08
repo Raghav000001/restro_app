@@ -2,13 +2,10 @@ import  { useState } from 'react'
 import AccordianBody from './AccordianBody'
 import { HiChevronDown } from "react-icons/hi";
 
-const Accordian = ({categoryName,items}) => {
-    //  const {categoryName,items} = props
-
-    const [open,setOpen] = useState(false)
-
+const Accordian = ({categoryName,items,open,setOpenIndex}) => {
+  
     const handleClick = ()=> {
-       setOpen(!open)
+          setOpenIndex()     
     }
 
   return (

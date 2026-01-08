@@ -2,8 +2,11 @@ import { useParams } from "react-router-dom";
 import useFetchDataById from "../hooks/useFetchDataById";
 import useRestroMenu from "../hooks/useRestroMenu";
 import Accordian from "./Accordian";
+import { useState } from "react";
 
 const ResInfo = () => {
+  const [openIndex,setOpenIndex] = useState(null)
+
   const { id } = useParams();
   const data = useFetchDataById(id) || {};
   const menu = useRestroMenu(id) || {};
@@ -25,10 +28,12 @@ const ResInfo = () => {
 
 
       <div className="mt-6">
-        {Object.entries(menu).map(([categoryName, items]) => (
+        {Object.entries(menu).map(([categoryName, items],index) => (
           <Accordian
            categoryName = {categoryName}
            items = {items}
+           open = {index === openIndex ? true : false}
+           setOpenIndex = {()=> setOpenIndex(index)}
           />
         ))}
       </div>

@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../hooks/useOnlineStatus";
+import UserContext from "../context/user.context";
+import { useContext } from "react";
+
 
 function Header() {
   const onlineStatus = useOnlineStatus();
+
+    //  const data =  useContext(UserContext)
+    //  console.log(data);
+     const {loggedInUser} =  useContext(UserContext) 
+     
+
 
   return (
     <header className="sticky top-0 bg-white border-b z-40">
@@ -18,6 +27,7 @@ function Header() {
             </li>
             <li className="hover:text-gray-900 cursor-pointer">Contact</li>
             <li className="hover:text-gray-900 cursor-pointer">Feedback</li>
+            <li className="hover:text-gray-900 cursor-pointer">  {loggedInUser} </li>
             <li className="font-semibold">{onlineStatus ? "online 🟢" : "offline 🔴"}</li>
           </ul>
         </nav>
