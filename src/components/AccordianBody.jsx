@@ -1,6 +1,13 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../redux/slices/cartSlice'
 
 const AccordianBody = ({items}) => {
+
+    const dispatch =  useDispatch()
+
+   
+
   return (
     <div>
          <div className="mt-3 grid grid-cols-1 sm:grid-cols-2  gap-3">
@@ -15,7 +22,9 @@ const AccordianBody = ({items}) => {
                   <div className="text-sm text-gray-600">
                     {item.price}
                   </div>
-                  <button className="btn-primary text-xs px-3 py-1">
+                  <button
+                   onClick={()=> dispatch(addToCart(item,item.id))} 
+                  className="btn-primary text-xs px-3 py-1">
                     Add to cart
                   </button>
                 </div>

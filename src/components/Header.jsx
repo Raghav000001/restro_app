@@ -13,7 +13,7 @@ function Header() {
      const {loggedInUser} =  useContext(UserContext)
      
      const cartItems = useSelector((store)=> store.cart.items)
-     console.log(cartItems);
+    //  console.log(cartItems);
      
      
      
@@ -33,7 +33,11 @@ function Header() {
             </li>
             <li className="hover:text-gray-900 cursor-pointer">Contact</li>
             <li className="hover:text-gray-900 cursor-pointer">Feedback</li>
-            <li className="hover:text-gray-900 cursor-pointer">cart:({cartItems.length}) </li>
+            <li className="hover:text-gray-900 cursor-pointer"> 
+              <Link to={"/cart"}>
+                cart:({cartItems.length})
+              </Link>
+               </li>
             <li className="hover:text-gray-900 cursor-pointer">  {loggedInUser} </li>
             <li className="font-semibold">{onlineStatus ? "online 🟢" : "offline 🔴"}</li>
           </ul>

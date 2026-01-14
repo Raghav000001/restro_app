@@ -7,6 +7,7 @@ import ErrorPage from "./components/ErrorPage";
 import ResInfo from "./components/ResInfo";
 import { lazy,Suspense } from "react";
 import Shimmer from "./components/Shimmer";
+import Cart from "./components/Cart";
 
 const About = lazy(()=> import("./components/About"));
 // on-demand import
@@ -37,6 +38,9 @@ const App = () => {
         },{
            path:"/menu/:id",
            element:<ResInfo/>
+        },{
+          path:"/cart",
+          element:<Cart/>
         }
       ],
     },
